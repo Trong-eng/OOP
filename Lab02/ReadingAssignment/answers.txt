@@ -1,0 +1,1 @@
+Allen Holub suggests limiting the use of getters and setters, as they can cause tight coupling and make code less adaptable. Instead, it's better to use parameterized constructors and static factory methods for object creation. Accessors should only be used when necessary to expose internal state without revealing implementation details.
