@@ -1,25 +1,26 @@
 package hust.soict.dsai.garbage;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Objects;
 
 public class NoGarbage {
-    public static void main(String[] args) {
-        StringBuilder sb = new StringBuilder(); // Sử dụng StringBuilder để tối ưu
-        long startTime = System.currentTimeMillis();
 
-        // Tạo chuỗi cực lớn mà không tạo "garbage"
-        for (int i = 0; i < 100000; i++) {
-            sb.append("garbage"); // Sử dụng append thay vì nối chuỗi
+    public static void main(String[] args) throws IOException {
+        long startTime, endTime;
+
+        InputStreamReader inputStream = new InputStreamReader(Objects.requireNonNull(GarbageCreator.class.getResourceAsStream("/test.txt")));
+        BufferedReader reader = new BufferedReader(inputStream);
+
+        startTime = System.currentTimeMillis();
+        StringBuilder outputString = new StringBuilder();
+        int character;
+        while ((character = reader.read()) != -1) {
+            outputString.append((char) character);
         }
+        endTime = System.currentTimeMillis();
+        reader.close();
 
-        String s = sb.toString(); // Kết quả cuối cùng
-        long endTime = System.currentTimeMillis();
-        System.out.println("Execution time without garbage: " + (endTime - startTime) + " ms");
-
-        // Chờ chương trình dừng để quan sát bộ nhớ
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        System.out.println(endTime - startTime);
     }
 }
-
