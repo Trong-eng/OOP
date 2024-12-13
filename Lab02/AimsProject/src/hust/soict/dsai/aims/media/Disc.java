@@ -1,33 +1,58 @@
 package hust.soict.dsai.aims.media;
 
+import hust.soict.dsai.aims.exception.PlayerException;
 
-public class Disc extends Media {
-    private int length;
-    private String director;
+public class Disc extends Media implements Playable {
+	private String director;
+	private int length;
+	
+	public Disc(String title, String category, String director, float cost) {
+		super(title, category, cost);
+		this.director = director;
+	}
 
-    public Disc() {
-        super();
-    }
+	public Disc(String title, String category, String director, int length, float cost) {
+		super(title, category, cost);
+		this.director = director;
+		this.length = length;
+	}
 
-    public Disc(String title, String category, float cost) {
-        super(title);  // Gọi constructor của Media, truyền title vào
-        this.setCategory(category);  // Gán giá trị cho category
-        this.setCost(cost);  // Gán giá trị cho cost
-    }
+	public Disc(int id, String title, String category, float cost) {
+		super(id, title, category, cost);
+	}
+
+	public Disc(String title, String category, float cost) {
+		super(title, category, cost);
+	}
+
+	public Disc(String title, String category) {
+		super(title, category);
+	}
+
+	public Disc(String title) {
+		super(title);
+	}
+
+	@Override
+	public String getType() {
+		return "";
+	}
+
+	@Override
+	public String getDetails() {
+		return "";
+	}
+
+	public String getDirector() {
+		return director;
+	}
 
 	public int getLength() {
-        return length;
-    }
+		return length;
+	}
 
-    public void setLength(int length) {
-        this.length = length;
-    }
+	@Override
+	public void play() throws PlayerException {
 
-    public String getDirector() {
-        return director;
-    }
-
-    public void setDirector(String director) {
-        this.director = director;
-    }
+	}
 }
